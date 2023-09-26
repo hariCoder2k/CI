@@ -41,6 +41,7 @@ class Perceptron:
                     self.bias =  self.bias + t[i]*self.alpha
             epoch += 1
             print("Epoch: {epoch} completed".format(epoch=epoch))
+            print(self.check_weights_bias())
             if stop not in flag:
                 break
             flag = [0]*len(x1)
@@ -61,20 +62,22 @@ x2 = [-1,-1,1,1]
 # the below input for AND
 # t = [-1,-1,-1,1]
 
+# # the below input for OR
+# t = [-1,1,1,1]
 
-# the below input for OR
-t = [-1,1,1,1]
+# # the below input for NAND
+t = [1,1,1,-1]
 
 net = Perceptron(0,0,0,1)
 net.fit(x1,x2,t)
 print()
 
-# i value correspond to a particular column in x1,x2,t ranging from 0 to 3
 print("Prediction:")
-i=2
-print("Predict for {input1} & {input2} is {prediction}".format(input1=x1[i],input2=x2[i],prediction=net.predict(x1[i],x2[i])))
-print("Actual value: {target}".format(target=t[i]))
-print()
+# i value correspond to a particular column in x1,x2,t ranging from 0 to 3
+for i in range(4):
+    print("Predict for {input1} & {input2} is {prediction}".format(input1=x1[i],input2=x2[i],prediction=net.predict(x1[i],x2[i])))
+    print("Actual value: {target}".format(target=t[i]))
+    print()
 
 # Printing Parameters
 print("Perceptron parameters:{param}\n".format(param=net.check_weights_bias()))

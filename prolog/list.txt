@@ -1,0 +1,42 @@
+Program 3 : List Operations
+
+1) Appending an element to a list
+
+?- append([1,2,3],[4],LIST).
+LIST = [1, 2, 3, 4].
+
+2) Appending two lists
+
+?- append([1,2,3],[4,5,6],LIST).
+LIST = [1, 2, 3, 4, 5, 6].
+
+3) Searching an element in a list
+
+?- member(1,[1,2,3,4]).
+true .
+
+?- member(5,[1,2,3,4]).
+false.
+
+4) Length of the list
+
+list_length([], 0).
+list_length([_ | L], N) :-
+    list_length(L, N1),
+    N is N1 + 1.    
+
+?- list_length([1,2,3,4],N).
+N = 4.
+
+5) Deleting an element from a list
+
+list(base case)
+delete_element(_, [], []).    
+
+delete_element(X, [X | L], L) :- !.
+
+delete_element(X, [Y | L], [Y | L1]) :-
+    delete_element(X, L, L1).
+
+?- delete_element(1,[1,2,3,4],A).
+A = [2, 3, 4].
